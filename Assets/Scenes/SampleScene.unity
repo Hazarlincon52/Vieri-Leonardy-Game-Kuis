@@ -937,32 +937,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e2f4b9dbab78548bebecb3330799f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soalSoal:
-  - hint: {fileID: 21300000, guid: 6c352dab9f1c3a545ae8bbebc32aa357, type: 3}
-    pertanyaan: Warna dari Daun?
-    jawabanTeks:
-    - Pink
-    - Hijau
-    - Putih
-    - Ungu
-    adalahBenar: 00010000
-  - hint: {fileID: 21300000, guid: 3350d2d4e5735d74eb23ffe5b714358a, type: 3}
-    pertanyaan: Warna dari Laut?
-    jawabanTeks:
-    - Hitam
-    - Pink
-    - Merah
-    - Biru
-    adalahBenar: 00000001
-  - hint: {fileID: 21300000, guid: 0b563d641d4fe8e478c0c3f56df0df35, type: 3}
-    pertanyaan: Warna dari Mawar?
-    jawabanTeks:
-    - Merah
-    - Jingga
-    - Kuning
-    - PinK
-    adalahBenar: 01000000
+  _soalSoal: {fileID: 11400000, guid: 8b11b54344254e240a6e2d64f2719d27, type: 2}
   _tempatPertanyaan: {fileID: 1730356295}
+  _playerProgress: {fileID: 11400000, guid: cdd3a9cd129c8944190baa575e2d1a72, type: 2}
   _tempatPilihanJawaban:
   - {fileID: 750986752}
   - {fileID: 1528098379}
