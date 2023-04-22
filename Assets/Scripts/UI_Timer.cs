@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class UI_Timer : MonoBehaviour
 {
-    [SerializeField]
+    public static event System.Action EventWaktuHabis;
+    /*[SerializeField]
     private UI_PesanLevel _tempatPesan = null;
-
+    */
     [SerializeField]
     private Slider _timeBar = null;
 
@@ -33,6 +34,7 @@ public class UI_Timer : MonoBehaviour
         if (!_waktuBerjalan)
         {
             return;
+
         }
         //Dikurangi sebanyak waktu menggambar satu frame (Second per Frame)
 
@@ -43,9 +45,11 @@ public class UI_Timer : MonoBehaviour
 
         if (_sisaWaktu <= 0f)
         {
-            _tempatPesan.Pesan = "Waktu Habis";
-            _tempatPesan.gameObject.SetActive(true);
+            /*_tempatPesan.Pesan = "Waktu Habis";
+            _tempatPesan.gameObject.SetActive(true);*/
+
             //Debug.Log("Waktu Habis");
+            EventWaktuHabis?.Invoke();
             _waktuBerjalan = false;
             return;
         }

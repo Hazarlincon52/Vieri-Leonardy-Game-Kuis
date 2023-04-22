@@ -10,6 +10,7 @@ using UnityEngine;
     )]
 public class LevelSoalKuis : ScriptableObject
 {
+
     [System.Serializable]
     public struct OpsiJawaban
     {
@@ -19,6 +20,7 @@ public class LevelSoalKuis : ScriptableObject
 
     public Sprite hint = null;
     public string pertanyaan = string.Empty;
+    public int levelPackIndex = 0;
 
     public OpsiJawaban[] opsiJawaban = new OpsiJawaban[0];
 

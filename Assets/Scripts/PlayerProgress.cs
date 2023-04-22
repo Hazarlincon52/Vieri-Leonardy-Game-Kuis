@@ -24,13 +24,13 @@ public class PlayerProgress : ScriptableObject
     public void SimpanProgress()
     {
         //Sample Data
-        //progressData.koin = 200;
-        //if (progressData.progresLevel == null)
-        //{
-            //progressData.progresLevel = new();
-        //}
-        //progressData.progresLevel.Add("Level Pack 1", 3);
-        //progressData.progresLevel.Add("Level Pack 3", 5);
+       /* progressData.koin = 0;
+        if (progressData.progresLevel == null)
+        { 
+        progressData.progresLevel = new();
+        }
+        progressData.progresLevel.Add("Level Pack 1", 3);
+        progressData.progresLevel.Add("Level Pack 3", 5);*/
 
         string fileName = "playerprogres.txt";
         var directory = Application.dataPath + "/Temporary";
@@ -62,11 +62,12 @@ public class PlayerProgress : ScriptableObject
 
         //var kontenData = $"{progressData.koin}\n";
         writer.Write(progressData.koin );
-        foreach (var i in progressData.progresLevel)
+        
+        /*foreach (var i in progressData.progresLevel)
         {
             writer.Write(i.Key);
             writer.Write(i.Value);
-        }
+        }*/
         writer.Dispose();
         
 
@@ -79,16 +80,30 @@ public class PlayerProgress : ScriptableObject
     {
         //TODO: Prosudur untuk muat data
 
-        //informasi untuk memuat data
-        string fileName = "playerprogres.txt";
-        var directory = Application.dataPath + "/Temporary";
-        var path = directory + "/" + fileName;
+         string fileName = "playerprogres.txt";
+         var directory = Application.dataPath + "/Temporary";
+         var path = directory + "/" + fileName;
+
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+            Debug.Log("Directory created: " + directory);
+        }
+
+        //Membuat file baru
+        if (!File.Exists(path))
+        {
+            File.Create(path).Dispose();
+            Debug.Log("File created: " + path);
+        }
 
         //Memuat data dari file menggunakan binari formatter 
         var fileStream = File.Open(path, FileMode.OpenOrCreate);
+        
 
-        try 
+        try
         {
+
             var reader = new BinaryReader(fileStream);
 
             try
@@ -121,9 +136,9 @@ public class PlayerProgress : ScriptableObject
                 return false;
             }
             //Memuat data dari file menggunakan binari formatter 
-            //var formatter = new BinaryFormatter();
+            var formatter = new BinaryFormatter();
 
-            //progressData = (MainData)formatter.Deserialize(fileStream);
+            progressData = (MainData)formatter.Deserialize(fileStream);
 
             //Putuskan aliran memori dengan File
             fileStream.Dispose();
