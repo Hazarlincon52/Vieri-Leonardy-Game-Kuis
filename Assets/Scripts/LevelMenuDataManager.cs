@@ -4,22 +4,31 @@ using UnityEngine;
 public class LevelMenuDataManager : MonoBehaviour
 {
     [SerializeField]
-    private InisialDataGameplay _inisialData = null;
-
+    private UI_LevelPackList _levelPackList = null;
+  
     [SerializeField]
     private PlayerProgress _playerProgress = null;
 
     [SerializeField]
     private TextMeshProUGUI _tempatKoin = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _tempatKoin.text = $"{_playerProgress.progressData.koin}";    
-    }
+	[Space, SerializeField]
+	private LevelPackKuis[] _levelPack = new LevelPackKuis[0];
 
-    private void OnApplicationQuit()
+	// Start is called before the first frame update
+	void Start()
     {
-        _inisialData.SaatKalah = false;
-    }
+		if (!_playerProgress.MuatProgres())
+		{
+			_playerProgress.SimpanProgress();
+		}
+		
+		_levelPackList.LoadLevelPack(_levelPack, _playerProgress.progressData);
+
+		_tempatKoin.text = $"{_playerProgress.progressData.koin}";
+
+		AudioManager.instance.PlayBGM(0);
+	}
+
+   
 }

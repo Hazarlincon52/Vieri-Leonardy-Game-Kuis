@@ -40,9 +40,9 @@ public class LevelManager : MonoBehaviour
         
         //_playerProgress.SimpanProgress();
         NextLevel();
-
-        //subscribe event
-        UI_PoinJawaban.EventJawabSoal += UI_PointJawaban_EventJawabaSoal;
+        AudioManager.instance.PlayBGM(1);
+		//subscribe event
+		UI_PoinJawaban.EventJawabSoal += UI_PointJawaban_EventJawabaSoal;
     }
 
     private void OnDestroy()
@@ -58,10 +58,22 @@ public class LevelManager : MonoBehaviour
 
     private void UI_PointJawaban_EventJawabaSoal(string jawaban, bool adalahBenar)
     {
-
-        if (adalahBenar)
+        if (!adalahBenar)
         {
+            return;
+        }
+        
+        var namaLevelPack = _inisialData.levelPack.name;
+        int levelTerakhir = _playerProgress.progressData.progresLevel[namaLevelPack]; 
+
+        if (_indexSoal + 2 > levelTerakhir)
+        {
+            //Tambahkan koin sebagai hadiah dari menyelesaikan soal kuis
             _playerProgress.progressData.koin += 20;
+
+            //membuka level selanjutnya agar dapat diakess di menu level
+            _playerProgress.progressData.progresLevel[namaLevelPack] = _indexSoal + 2;
+            _playerProgress.SimpanProgress();
         }
     }
 
@@ -78,7 +90,7 @@ public class LevelManager : MonoBehaviour
 
         else
         {
-            //Ambil data Pertanyaan
+            //Ambil data Pertanyaan 
             LevelSoalKuis soal = _soalSoal.AmbiLevelKe(_indexSoal);
 
             //Set informasi soal

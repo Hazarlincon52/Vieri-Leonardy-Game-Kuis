@@ -16,25 +16,47 @@ public class PlayerProgress : ScriptableObject
     public struct MainData
     {
         public int koin;
-        public Dictionary<string,int> progresLevel;
+        public Dictionary<string, int> progresLevel;
     }
+    [SerializeField]
+    private string _fileName = "playerprogres.txt";
 
-    public MainData progressData = new MainData();
+    [SerializeField]
+    private string _startingLevelPackname = string.Empty;
+
+	public MainData progressData = new MainData();
 
     public void SimpanProgress()
     {
         //Sample Data
-       /* progressData.koin = 0;
-        if (progressData.progresLevel == null)
-        { 
-        progressData.progresLevel = new();
-        }
-        progressData.progresLevel.Add("Level Pack 1", 3);
-        progressData.progresLevel.Add("Level Pack 3", 5);*/
+        
+        //progressData.koin = 0;
+        /*
+         if (progressData.progresLevel == null)
+         { 
+         progressData.progresLevel = new();
+         }
+        */
+        //progressData.progresLevel.Add("Level Pack 1", 3);
+        //progressData.progresLevel.Add("Level Pack 3", 5);
 
-        string fileName = "playerprogres.txt";
-        var directory = Application.dataPath + "/Temporary";
-        var path = directory + "/" + fileName;
+        //simpan starting data saat objeck Dictionary tidak ada saat dimuat
+        if (progressData.progresLevel == null)
+        {
+			
+			progressData.progresLevel = new();
+            progressData.koin = 0;
+            progressData.progresLevel.Add(_startingLevelPackname,1);
+        }
+
+        //informasi peyimpanan data
+#if UNITY_EDITOR
+        string directory = Application.dataPath + "/Temporary/";
+#elif (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+        string directory = Application.presistentDataPath + "/ProgresLokal/";
+#endif
+
+        var path = directory + _fileName;
 
         if (!Directory.Exists(directory))
         {
@@ -53,21 +75,21 @@ public class PlayerProgress : ScriptableObject
         //Meyimpan data ke dalam file menggunakan binari
         var fileStream = File.Open(path, FileMode.OpenOrCreate);
         //var formatter = new BinaryFormatter();
-
+        
         fileStream.Flush();
         //formatter.Serialize(fileStream, progressData);
 
         var writer = new BinaryWriter(fileStream);
-
+        
 
         //var kontenData = $"{progressData.koin}\n";
-        writer.Write(progressData.koin );
+        writer.Write(progressData.koin);
         
-        /*foreach (var i in progressData.progresLevel)
+        foreach (var i in progressData.progresLevel)
         {
             writer.Write(i.Key);
             writer.Write(i.Value);
-        }*/
+        }
         writer.Dispose();
         
 
@@ -80,9 +102,8 @@ public class PlayerProgress : ScriptableObject
     {
         //TODO: Prosudur untuk muat data
 
-         string fileName = "playerprogres.txt";
-         var directory = Application.dataPath + "/Temporary";
-         var path = directory + "/" + fileName;
+         var directory = Application.dataPath + "/Temporary/";
+         var path = directory + _fileName;
 
         if (!Directory.Exists(directory))
         {
@@ -118,8 +139,8 @@ public class PlayerProgress : ScriptableObject
                 {
                     var namaLevelPack = reader.ReadString();
                     var levelKe = reader.ReadInt32();
-                    progressData.progresLevel.Add(namaLevelPack, levelKe);
-                    Debug.Log($"{namaLevelPack}:{levelKe}");
+					Debug.Log($"{namaLevelPack}:{levelKe}");
+					progressData.progresLevel.Add(namaLevelPack, levelKe);
                 }
 
                 reader.Dispose();

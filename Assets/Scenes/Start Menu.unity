@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 804903066}
   - component: {fileID: 804903065}
   - component: {fileID: 804903064}
+  - component: {fileID: 804903067}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -219,6 +220,18 @@ MonoBehaviour:
           m_StringArgument: Level Packs
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 804903067}
+        m_TargetAssemblyTypeName: PemanggilSuara, Assembly-CSharp
+        m_MethodName: PanggilSuara
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: d0146b53bdc8bc54caf75672aed37c89, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &804903065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +270,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804903062}
   m_CullTransparentMesh: 1
+--- !u!114 &804903067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804903062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901bd78e3dafe0844b994acd2171dd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &934180315
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +747,31 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 159549894347388517, guid: e20f715a97e06b54699141499b3e908d, type: 3}
   m_PrefabInstance: {fileID: 1681377931}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1681377933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 159549894347388513, guid: e20f715a97e06b54699141499b3e908d, type: 3}
+  m_PrefabInstance: {fileID: 1681377931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1681377934
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681377933}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 321b02725dfc308468e122ed68f5b090, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1717206143
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,3 +975,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1753599266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1753599267}
+  - component: {fileID: 1753599268}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1753599267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753599266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1753599268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753599266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7670a58db31eb8a44a70532ea5336b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bgmPrefab: {fileID: 7690187079211906788, guid: b6389ed100ef6894cbce31d9b6de1b8c, type: 3}
+  _sfxPrefab: {fileID: 1253741006917960026, guid: 84883b6763b7e56428386ed50aa7711b, type: 3}
+  _bgmClips:
+  - {fileID: 8300000, guid: 3e484b8682981d5428c922adb9df4dae, type: 3}
+  - {fileID: 8300000, guid: 820f34b4d8c0d334aaf1227876fe291b, type: 3}
